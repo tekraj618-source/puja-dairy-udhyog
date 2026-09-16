@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ dairy.name }} | Fresh Dairy Products</title>
+    <meta name="description" content="Puja Dairy Udhyog - fresh and quality dairy products in Dhangadhi, Nepal.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <a class="brand" href="#home">
+        <span class="brand-icon">♧</span>
+        <span>
+            <strong>{{ dairy.name }}</strong>
+            <small>Dhangadhi, Nepal</small>
+        </span>
+    </a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#products">Products</a>
+        <a href="#why">Why Choose Us</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="call-button" href="tel:{{ dairy.phone }}">☎ &nbsp;Call Now</a>
+</header>
+
+<main>
+<section id="home" class="hero">
+    <div class="hero-content">
+        <div class="trust-pill">✧ &nbsp; {{ dairy.trust }}</div>
+        <h1>Freshness You<br><span>Can Trust.</span></h1>
+        <h2>{{ dairy.name }} — Quality Dairy Products in Dhangadhi</h2>
+        <p>Fresh, hygienic and delicious dairy products made with care for your family.</p>
+
+        <div class="hero-actions">
+            <a class="primary-btn" href="#products">View Our Products &nbsp; →</a>
+            <a class="secondary-btn" href="#contact">Contact Us</a>
+        </div>
+
+        <div class="checks">
+            <span>✓ &nbsp; Fresh daily</span>
+            <span>✓ &nbsp; Hygienic preparation</span>
+            <span>✓ &nbsp; Local & trusted</span>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=1200&q=90" alt="Fresh milk and dairy products">
+    </div>
+</section>
+
+<section id="about" class="about section">
+    <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=1000&q=90" alt="Fresh dairy products">
+        <div class="experience-card">
+            <strong>5+ Years</strong>
+            <span>Serving our community</span>
+        </div>
+    </div>
+
+    <div class="about-copy">
+        <label>OUR STORY</label>
+        <h2>About Puja Dairy Udhyog</h2>
+        <p>Puja Dairy Udhyog is a trusted local dairy business serving Dhangadhi and the surrounding community for more than five years. We provide fresh, quality dairy products with a caring focus on hygiene, taste and customer satisfaction.</p>
+        <p>From the morning glass of milk to the dahi shared at family meals, we are proud to be part of everyday life in our community.</p>
+
+        <div class="about-facts">
+            <div>⌖ <span>Proudly local to Dhangadhi</span></div>
+            <div>◷ <span>Open {{ dairy.hours }}</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="products" class="products section">
+    <div class="section-heading">
+        <label>MADE FOR YOUR FAMILY</label>
+        <h2>Our Fresh Products</h2>
+        <p>Everyday essentials and delicious dairy favourites, prepared with care.</p>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <div class="product-body">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <strong>Contact for Price</strong>
+                <button onclick="openInquiry('{{ product.name }}')">Enquire Now &nbsp; →</button>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section id="why" class="why section">
+    <div class="why-intro">
+        <label>WHY CHOOSE US</label>
+        <h2>Care You Can Taste</h2>
+        <p>From our dairy milk to delicious dairy specialities, we are committed to bringing quality and freshness to your table.</p>
+    </div>
+
+    <div class="why-grid">
+        <div><span>✿</span><h3>5+ Years of Trust</h3><p>Proudly serving local families with dependable care.</p></div>
+        <div><span>♧</span><h3>Fresh & Quality Products</h3><p>Fresh dairy products made with care every day.</p></div>
+        <div><span>◉</span><h3>Hygienic Preparation</h3><p>Clean and careful preparation is central to our work.</p></div>
+        <div><span>♡</span><h3>Customer Satisfaction</h3><p>Friendly service and products your family can enjoy.</p></div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <div class="contact-inner">
+        <div class="contact-copy">
+            <label>LET'S CONNECT</label>
+            <h2>We'd Love to Hear From You</h2>
+            <p>Ask about products, place an inquiry, or visit us in Dhangadhi during opening hours.</p>
+
+            <div class="contact-list">
+                <div>☎ <span><b>Phone</b><br>{{ dairy.phone }}</span></div>
+                <div>✉ <span><b>Email</b><br>{{ dairy.email }}</span></div>
+                <div>⌖ <span><b>Location</b><br>{{ dairy.address }}</span></div>
+                <div>◷ <span><b>Opening Hours</b><br>{{ dairy.hours }}</span></div>
+            </div>
+
+            <div class="contact-buttons">
+                <a href="tel:{{ dairy.phone }}">☎ Call Now</a>
+                <a href="mailto:{{ dairy.email }}">✉ Email Us</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Dhangadhi%2C%20Sudurpaschim%2C%20Nepal" target="_blank">⌖ Get Directions</a>
+            </div>
+        </div>
+
+        <div class="inquiry-box">
+            <h3>Send an Inquiry</h3>
+            <p>Tell us what you need and we'll be happy to help.</p>
+
+            <form id="inquiryForm">
+                <div class="form-row">
+                    <label>Name<input id="name" type="text" placeholder="Your name" required></label>
+                    <label>Phone Number<input id="phone" type="tel" placeholder="Your phone number" required></label>
+                </div>
+
+                <label>Product Interested In
+                    <select id="product">
+                        <option value="">Select a product</option>
+                        {% for product in products %}
+                        <option value="{{ product.name }}">{{ product.name }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+
+                <label>Message
+                    <textarea id="message" placeholder="How can we help?" required></textarea>
+                </label>
+
+                <button type="submit">Submit Inquiry &nbsp; →</button>
+                <p id="formStatus" class="form-status"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-card">
+        <h3>Find Us in Dhangadhi</h3>
+        <p>{{ dairy.address }}</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Dhangadhi%2C%20Sudurpaschim%2C%20Nepal" target="_blank">Open in Google Maps →</a>
+    </div>
+</section>
+
+<section class="bottom-cta">
+    <div>
+        <h2>Looking for Fresh Dairy Products?</h2>
+        <p>Visit Puja Dairy Udhyog or contact us today.</p>
+    </div>
+    <a href="tel:{{ dairy.phone }}">☎ Call {{ dairy.phone }}</a>
+</section>
+</main>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h3>🥛 {{ dairy.name }}</h3>
+            <p>Freshness, care and trusted dairy service for the Dhangadhi community.</p>
+        </div>
+        <div>
+            <h4>QUICK LINKS</h4>
+            <a href="#home">Home</a><a href="#products">Products</a><a href="#contact">Contact</a>
+        </div>
+        <div>
+            <h4>ABOUT</h4>
+            <a href="#about">About Us</a><a href="#why">Why Choose Us</a>
+        </div>
+        <div>
+            <h4>CONTACT</h4>
+            <p>{{ dairy.address }}</p><p>{{ dairy.email }}</p><p>{{ dairy.hours }}</p>
+        </div>
+    </div>
+    <div class="copyright">© 2026 {{ dairy.name }}. All rights reserved.</div>
+</footer>
+
+<a class="floating-call" href="tel:{{ dairy.phone }}">☎</a>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
